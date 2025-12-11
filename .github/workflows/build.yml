@@ -1,0 +1,53 @@
+name: Build Apk
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: "Chọn loại build"
+        required: true
+        default: "release"
+        type: choice
+        options:
+          - release
+          - debug
+          - all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build Debug
+        if: ${{ github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == 'all' }}
+        run: ./gradlew assembleDebug
+
+      - name: Build Release
+        if: ${{ github.event.inputs.build_type == 'release' || github.event.inputs.build_type == 'all' }}
+        run: ./gradlew assembleRelease
+
+      - name: Upload Debug APK
+        if: ${{ github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == 'all' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/*.apk
+
+      - name: Upload Release APK
+        if: ${{ github.event.inputs.build_type == 'release' || github.event.inputs.build_type == 'all' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: app/build/outputs/apk/release/*.apk
