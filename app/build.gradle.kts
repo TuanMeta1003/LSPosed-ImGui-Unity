@@ -5,15 +5,15 @@ plugins {
 
 android {
     namespace = "com.zrt.xposed"
-    compileSdk = 34
-    ndkVersion = "28.2.13676358"
+    compileSdk = 36
+    ndkVersion = "29.0.14206865"
 
     defaultConfig {
         applicationId = "com.zrt.xposed"
         minSdk = 29
-        targetSdk = 35
-        versionCode = 11
-        versionName = "2.3.4"
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0.0"
 		
 		externalNativeBuild {
             cmake {
