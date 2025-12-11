@@ -11,3 +11,10 @@
 >  
 > You may need to use a different input method depending on the game.  
 > **I will not provide support for implementing or integrating any alternative touch-input methods.**
+
+## Credits
+- MJx0 [KittyMemory](https://github.com/Perfare/Zygisk-Il2CppDumper)
+- jmpews [Dobby](https://github.com/jmpews/Dobby)
+- ocornut [imgui](https://github.com/ocornut/imgui)
+- adamyaxley [Obfuscate](https://github.com/adamyaxley/Obfuscate)
+- HexHacking [xDL](https://github.com/hexhacking/xDL)
